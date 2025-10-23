@@ -1,210 +1,330 @@
-Infraestrutura de Automação em Nuvem — Azure + Docker + Cloudflare
+# 🚀 Infraestrutura de Automação na Azure
 
-Este projeto implementa uma plataforma completa de automação hospedada na Azure, com custo zero de operação e total automação de inicialização, DNS e backup.
-A solução foi desenvolvida para rodar uma pilha de serviços modernos, mantendo resiliência, escalabilidade e eficiência financeira.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Azure](https://img.shields.io/badge/Azure-Free%20Tier-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker)](https://www.docker.com/)
+[![n8n](https://img.shields.io/badge/n8n-Automation-EA4B71?logo=n8n)](https://n8n.io/)
 
-🚀 Objetivo
-
-Hospedar e orquestrar aplicações de automação (como n8n, Evolution API e Redis) em uma infraestrutura gratuita e profissional, com infraestrutura como código e auto-recuperação total.
-
-🧩 Arquitetura da Solução
-
-Serviços Principais:
-
-n8n — Plataforma de automação de fluxos.
-
-Evolution API — Interface para integrações e automação de mensagens.
-
-Redis — Armazenamento em cache e fila de tarefas.
-
-Infraestrutura:
-
-Azure Free Tier (VM Linux) — Servidor base de custo zero.
-
-Docker Compose — Gerenciamento e isolamento dos containers.
-
-Nginx — Proxy reverso com gerenciamento de SSL e roteamento.
-
-Cloudflare API — Atualização dinâmica do DNS.
-
-Systemd (Ubuntu) — Automação da inicialização dos serviços.
-
-⚙️ Automação e Scripts
-
-Agendamento de inicialização/desligamento:
-A VM é ligada e desligada automaticamente em horários definidos, evitando custos de processamento ocioso.
-
-Script de atualização de IP dinâmico:
-
-Detecta o novo IP público da VM a cada boot.
-
-Atualiza automaticamente o registro DNS (Tipo A) via Cloudflare API.
-
-Inicialização automática com systemd:
-
-Inicia o Docker e os containers (Nginx, n8n, Evolution API, Redis).
-
-Executa o script de atualização de IP.
-
-Toda a pilha fica disponível em menos de 2 minutos.
-
-🔒 Segurança e Resiliência
-
-Backups diários automáticos via snapshot na Azure.
-
-Containers isolados para cada serviço.
-
-SSL ativo via Nginx com certificados atualizados automaticamente.
-
-Infraestrutura auto-recuperável: todo o ambiente se reconstrói ao ligar a VM.
-
-💡 Resultado
-
-Uma plataforma de automação em nuvem:
-
-Robusta e segura.
-
-Com DNS dinâmico e automação completa.
-
-Custando zero reais em operação.
-
-Ideal para desenvolvedores, entusiastas de DevOps, e profissionais que desejam aprender sobre infraestrutura escalável e eficiente na Azure.
-
-🧠 Tecnologias Utilizadas
-
-Azure · Linux (Ubuntu) · Docker Compose · Nginx · Redis · n8n · Evolution API · Cloudflare API · Systemd · Shell Script
-
-Quer que eu adapte esse texto para o formato ideal de README.md (com badges, seções de instalação e execução, e código de exemplo)?
-Posso transformar essa descrição em um modelo de repositório pronto.
-
-Você disse:
-350 caracters
-O ChatGPT disse:
-
-Perfeito — aqui está uma versão profissional e concisa (≈350 caracteres) para a descrição do seu repositório no GitHub:
-
-Plataforma de automação na Azure com custo zero, utilizando Docker Compose, Nginx, Redis, n8n e Evolution API. Inclui automação de inicialização, atualização dinâmica de DNS via Cloudflare e backups diários, garantindo resiliência, segurança e eficiência operacional.
-
-Você disse:
-
-Quer que eu adapte esse texto para o formato ideal de **README.md** (com badges, seções de instalação e execução, e código de exemplo)?
-
-quero sim e me mande adaptado com tudo pronto
-O ChatGPT disse:
-
-Perfeito 👍 Aqui está o README.md completo, já formatado e pronto para uso no GitHub — com seções profissionais, badges, instruções de instalação, execução, e destaque das tecnologias.
-
-# Infraestrutura de Automação na Azure  
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-
-> Plataforma de automação na Azure com custo zero, utilizando Docker Compose, Nginx, Redis, n8n e Evolution API.  
-> Inclui automação de inicialização, atualização dinâmica de DNS via Cloudflare e backups diários, garantindo resiliência, segurança e eficiência operacional.
+> Plataforma de automação na Azure com **custo zero**, utilizando Docker Compose, Nginx, Redis, n8n e Evolution API. Inclui automação de inicialização, atualização dinâmica de DNS via Cloudflare e backups diários.
 
 ---
 
 ## 📘 Visão Geral
 
-Este projeto cria uma infraestrutura de automação **100% automatizada** e **de custo zero** na **Azure**, utilizando **containers Docker** para rodar:
-- **n8n** (automação de fluxos)
-- **Evolution API** (integrações)
-- **Redis** (cache e filas)
+Este projeto implementa uma infraestrutura de automação **100% automatizada e gratuita** na Azure, aproveitando o Free Tier para criar um ambiente completo de automação e integração.
 
-Toda a plataforma é orquestrada com **Docker Compose**, exposta via **Nginx**, protegida com SSL e com **DNS dinâmico atualizado automaticamente** via **Cloudflare API**.
+### 🎯 Principais Recursos
+
+- **n8n** - Automação de fluxos de trabalho (workflows)
+- **Evolution API** - Integrações com WhatsApp e outras plataformas
+- **Redis** - Cache em memória e gerenciamento de filas
+- **Nginx** - Proxy reverso com SSL/TLS
+- **DNS Dinâmico** - Atualização automática via Cloudflare API
+- **Backup Automatizado** - Snapshots diários da VM
 
 ---
 
-## 🧩 Arquitetura da Solução
+## 🏗️ Arquitetura da Solução
 
 ```mermaid
 flowchart TD
     A[Usuário] -->|HTTPS| B[Nginx Proxy]
-    B --> C[n8n]
-    B --> D[Evolution API]
-    B --> E[Redis]
-    F[Cloudflare DNS] --> B
-    G[Systemd - Ubuntu] -->|Inicializa| B
+    B --> C[n8n :5678]
+    B --> D[Evolution API :8080]
+    B --> E[Redis :6379]
+    F[Cloudflare DNS] -.->|Atualização automática| B
+    G[Systemd - Ubuntu] -->|Inicializa serviços| B
+    H[Azure Free Tier VM] -->|Hospeda| G
+    I[Cron Jobs] -->|Backup diário| H
+```
 
-⚙️ Automação Implementada
+---
 
-Agendamento de inicialização/desligamento da VM (Azure Free Tier)
+## ⚙️ Automação Implementada
 
-Script de IP dinâmico: detecta o IP público e atualiza automaticamente o DNS via Cloudflare
+| Automação | Descrição | Ferramenta |
+|-----------|-----------|------------|
+| **Inicialização/Desligamento** | Agendamento automático da VM | Azure Automation |
+| **DNS Dinâmico** | Detecção e atualização do IP público | Cloudflare API + Script Bash |
+| **Boot Automático** | Inicialização de serviços no boot | Systemd |
+| **Backup** | Snapshots diários da VM | Azure Backup |
+| **Monitoramento** | Health checks dos containers | Docker Compose |
 
-Inicialização automática: o systemd inicia Docker, containers e o script DNS
+---
 
-Backup diário: snapshots automáticos da VM
+## 🧠 Stack Tecnológico
 
-🧠 Tecnologias Utilizadas
-Categoria	Tecnologias
-Cloud	Azure Free Tier
-Orquestração	Docker Compose
-Web Server	Nginx
-Banco de Dados	Redis
-Automação	n8n, Evolution API
-DNS Dinâmico	Cloudflare API
-Sistema Operacional	Ubuntu Linux
-Scripts	Shell Script + Systemd
-🧰 Instalação
+```yaml
+Cloud Provider: Azure (Free Tier)
+Containerização: Docker + Docker Compose
+Web Server: Nginx (Proxy Reverso + SSL)
+Cache/Queue: Redis 7.x
+Automação: n8n (Self-hosted)
+Integração: Evolution API
+DNS: Cloudflare
+Sistema Operacional: Ubuntu 22.04 LTS
+Scripts: Bash + Systemd
+```
 
-Clone o repositório:
+---
 
-git clone https://github.com/usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+## 🚀 Instalação
 
+### Pré-requisitos
 
-Configure variáveis de ambiente:
+- VM Ubuntu 22.04 na Azure (Free Tier)
+- Docker e Docker Compose instalados
+- Domínio configurado no Cloudflare
+- Chaves de API da Cloudflare
 
+### Passo a Passo
+
+1. **Clone o repositório**
+
+```bash
+git clone https://github.com/eduardosato/azure-automation-infra.git
+cd azure-automation-infra
+```
+
+2. **Configure as variáveis de ambiente**
+
+```bash
 cp .env.example .env
-# Edite o arquivo com suas credenciais da Cloudflare e URLs
+nano .env
+```
 
+Edite as seguintes variáveis:
 
-Suba os containers:
+```env
+# Cloudflare
+CLOUDFLARE_EMAIL=seu-email@dominio.com
+CLOUDFLARE_API_KEY=sua_chave_api_aqui
+CLOUDFLARE_ZONE_ID=seu_zone_id
+CLOUDFLARE_RECORD_ID=seu_record_id
+DOMAIN=seu-dominio.com
 
+# n8n
+N8N_BASIC_AUTH_USER=admin
+N8N_BASIC_AUTH_PASSWORD=sua_senha_segura
+
+# Evolution API
+EVOLUTION_API_KEY=sua_chave_api_evolution
+
+# Redis
+REDIS_PASSWORD=sua_senha_redis
+```
+
+3. **Inicie os containers**
+
+```bash
 docker-compose up -d
+```
 
+4. **Configure o script de atualização de DNS**
 
-Acesse via navegador:
+```bash
+sudo cp scripts/update-dns.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/update-dns.sh
+```
 
-https://seu-dominio.com
+5. **Configure o systemd**
 
-🔄 Script de Atualização de IP (exemplo)
+```bash
+sudo cp systemd/dns-updater.service /etc/systemd/system/
+sudo systemctl enable dns-updater.service
+sudo systemctl start dns-updater.service
+```
+
+6. **Acesse as aplicações**
+
+- n8n: `https://seu-dominio.com/n8n`
+- Evolution API: `https://seu-dominio.com/evolution`
+
+---
+
+## 🔄 Script de Atualização de DNS
+
+O script detecta automaticamente mudanças no IP público e atualiza o registro DNS no Cloudflare:
+
+```bash
 #!/bin/bash
-# Atualiza automaticamente o IP público no DNS da Cloudflare
-IP=$(curl -s https://api.ipify.org)
-ZONE_ID="xxxxxxxxxxxx"
-RECORD_ID="xxxxxxxxxxxx"
-EMAIL="seuemail@dominio.com"
-API_KEY="sua_chave_api"
+# Script: update-dns.sh
+# Descrição: Atualiza automaticamente o IP público no DNS da Cloudflare
 
-curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$RECORD_ID" \
--H "X-Auth-Email: $EMAIL" \
--H "X-Auth-Key: $API_KEY" \
--H "Content-Type: application/json" \
---data "{\"type\":\"A\",\"name\":\"seu-dominio.com\",\"content\":\"$IP\",\"ttl\":120,\"proxied\":false}"
+set -e
 
-🔒 Segurança e Resiliência
+# Carregar variáveis de ambiente
+source /opt/automation/.env
 
-SSL ativo via Nginx
+# Obter IP público atual
+CURRENT_IP=$(curl -s https://api.ipify.org)
+echo "IP atual detectado: $CURRENT_IP"
 
-Containers isolados
+# Obter IP registrado no Cloudflare
+REGISTERED_IP=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_records/$CLOUDFLARE_RECORD_ID" \
+  -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+  -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+  -H "Content-Type: application/json" | jq -r '.result.content')
 
-Backups automáticos na Azure
+echo "IP registrado no DNS: $REGISTERED_IP"
 
-Auto-recuperação total em caso de reboot
+# Atualizar se houver diferença
+if [ "$CURRENT_IP" != "$REGISTERED_IP" ]; then
+  echo "IPs diferentes! Atualizando DNS..."
+  
+  RESPONSE=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_records/$CLOUDFLARE_RECORD_ID" \
+    -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+    -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+    -H "Content-Type: application/json" \
+    --data "{\"type\":\"A\",\"name\":\"$DOMAIN\",\"content\":\"$CURRENT_IP\",\"ttl\":120,\"proxied\":false}")
+  
+  if echo "$RESPONSE" | jq -e '.success' > /dev/null; then
+    echo "✅ DNS atualizado com sucesso!"
+  else
+    echo "❌ Erro ao atualizar DNS"
+    exit 1
+  fi
+else
+  echo "✅ IP já está atualizado. Nenhuma ação necessária."
+fi
+```
 
-📈 Resultado
+---
 
-Uma plataforma de automação robusta, auto-gerenciável e gratuita, ideal para estudar ou implantar soluções leves em nuvem, mantendo boas práticas de DevOps e Infra as Code.
+## 📁 Estrutura do Projeto
 
-📄 Licença
+```
+.
+├── docker-compose.yml          # Orquestração dos containers
+├── .env.example                # Exemplo de variáveis de ambiente
+├── nginx/
+│   ├── nginx.conf              # Configuração do Nginx
+│   └── ssl/                    # Certificados SSL
+├── scripts/
+│   ├── update-dns.sh           # Script de atualização DNS
+│   └── backup.sh               # Script de backup
+├── systemd/
+│   ├── dns-updater.service     # Service do systemd
+│   └── docker-compose.service  # Service do Docker Compose
+└── README.md
+```
 
-Distribuído sob a licença MIT. Veja LICENSE para mais detalhes.
+---
 
-🧑‍💻 Autor
+## 🔒 Segurança e Boas Práticas
 
-Eduardo Sato
+### Implementado
+
+- ✅ SSL/TLS via Let's Encrypt ou certificados próprios
+- ✅ Containers isolados em rede Docker
+- ✅ Variáveis sensíveis em arquivo `.env` (não versionado)
+- ✅ Backups automáticos diários
+- ✅ Auto-recuperação em caso de reboot da VM
+- ✅ Autenticação básica no n8n
+- ✅ API keys para Evolution API
+
+### Recomendações Adicionais
+
+- Configure firewall (UFW) limitando portas expostas
+- Use fail2ban para proteção contra força bruta
+- Implemente rate limiting no Nginx
+- Monitore logs regularmente
+
+---
+
+## 📊 Monitoramento
+
+Para verificar o status dos serviços:
+
+```bash
+# Status dos containers
+docker-compose ps
+
+# Logs em tempo real
+docker-compose logs -f
+
+# Status do systemd
+systemctl status dns-updater.service
+systemctl status docker-compose.service
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### Containers não iniciam
+
+```bash
+docker-compose down
+docker-compose up -d --force-recreate
+```
+
+### DNS não atualiza
+
+```bash
+# Verificar logs do script
+journalctl -u dns-updater.service -f
+
+# Executar manualmente
+/usr/local/bin/update-dns.sh
+```
+
+### SSL não funciona
+
+```bash
+# Verificar certificados
+ls -la nginx/ssl/
+
+# Recarregar Nginx
+docker-compose restart nginx
+```
+
+---
+
+## 🎯 Roadmap
+
+- [ ] Implementar CI/CD com GitHub Actions
+- [ ] Adicionar Prometheus + Grafana para monitoramento
+- [ ] Configurar alertas via Telegram/Discord
+- [ ] Implementar logs centralizados (ELK Stack)
+- [ ] Adicionar Traefik como alternativa ao Nginx
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 👤 Autor
+
+**Eduardo Sato**  
 Desenvolvedor Full Stack | DevOps Enthusiast
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://linkedin.com/in/edsato)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/eduardosato22)
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para:
+
+1. Fazer um fork do projeto
+2. Criar uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abrir um Pull Request
+
+---
+
+## ⭐ Mostre seu apoio
+
+Se este projeto foi útil para você, considere dar uma ⭐️!
+
+---
+
+<div align="center">
+  <sub>Construído com ❤️ por Eduardo Sato</sub>
+</div>
